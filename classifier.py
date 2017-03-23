@@ -62,8 +62,14 @@ def is_same_shank(list):
 same_shank_list = is_same_shank(shanks_dat)
 
 ## Each observation should go with a 1 or a 0 - that is, whether or not that observation had a same shank.
+def put_into_2d_list(inhib,shank):
+    features = []
+    for i in inhib:
+        for j in shank:
+            features.append([j,i])
+    return features
 
-
+features = put_into_2d_list(normalized_inhib, same_shank_list)
 
 ## Next, we need labels. This tells our algorithim what response to associate with an associating feature.
 
