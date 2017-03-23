@@ -40,10 +40,30 @@ x = np.array(range(-50,51))
 x_smooth = np.linspace(x.min(), x.max(), num=1000)
 smoothed_inhib = smooth_points(normalized_inhib, x, x_smooth)
 
-
+## 4. Machine learning aspect
 ## For now, we are going to use a decision tree implementation of machine learning.
 
-## First, we need features. These will essentially be our data.
+## First, we need features. These will essentially be our data (TODO: use the normalized or smoothed points? using the normalized for now).
+shanks_file = open('shanks.csv', 'r')
+shanks_dat = list_creator(shanks_file)
+shanks_dat = np.array(shanks_dat)
+shanks_dat = shanks_dat.astype(int)
+
+## Decide if same shank or not - this will be one of the aspects of our feature.
+def is_same_shank(list):
+    same_shank = []
+    for row in list:
+        if row[2] == row[3]:
+            same_shank.append(1)
+        else:
+            same_shank.append(0)
+    return same_shank
+
+same_shank_list = is_same_shank(shanks_dat)
+
+## Each observation should go with a 1 or a 0 - that is, whether or not that observation had a same shank.
+
+
 
 ## Next, we need labels. This tells our algorithim what response to associate with an associating feature.
 
