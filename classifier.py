@@ -72,4 +72,20 @@ def put_into_2d_list(inhib,shank):
 features = put_into_2d_list(normalized_inhib, same_shank_list)
 
 ## Next, we need labels. This tells our algorithim what response to associate with an associating feature.
+def determine_labels(list):
+    labels = []
+    for row in list:
+        ## check if same shank
+        if row[0] == 1:
+            ## same shank, check if low at 0
+            if row[1][50] == 0:
+                ## low at 0, check for recovery
+                print "True"
+            else:
+                ## not low at 0, low elsewhere?
+                print "False"
+        else:
+            ## not same shank, check for low bin
+            return False
 
+determine_labels(features)
