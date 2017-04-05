@@ -2,6 +2,7 @@ from sklearn import tree
 import numpy as np
 from scipy.interpolate import spline
 import matplotlib.pyplot as plt
+import math
 
 ## 1. Read in the data line by line and put it into a matrix
 import csv
@@ -73,14 +74,23 @@ features = put_into_2d_list(normalized_inhib, same_shank_list)
 
 ## Next, we need labels. This tells our algorithim what response to associate with an associating feature.
 labels = []
-for i in features:
-    if i[0] == 1:
+length = int(math.sqrt(len(features)))
+for i in range(length):
+    print features[i][1]
+    if features[i][0] == 1:
         # same shank, check if low at 0
-        if i[1][49] == 0:
+        if features[i][1][50] == 0:
             # low at 0, check for recovery
-            print "Low at 0"
+            continue
         else:
             # not low at 0, low elsewhere?
-            print "Not low at 0"
+            continue
     else:
-        # not same shank, check for low bin
+        # not same shank, still need to check for low bin
+        if features[i][1][49] == 0:
+            # still has a low bin
+            continue
+        else:
+            # no low bin
+            labels.append("NI")
+print labels
