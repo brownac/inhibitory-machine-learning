@@ -72,14 +72,16 @@ def put_into_2d_list(inhib,shank):
 
 features = put_into_2d_list(normalized_inhib, same_shank_list)
 
+plt.plot(features[65][1])
+plt.show()
+
 ## Next, we need labels. This tells our algorithim what response to associate with an associating feature.
 labels = []
 length = int(math.sqrt(len(features)))
 for i in range(length):
-    print features[i][1]
     if features[i][0] == 1:
         # same shank, check if low at 0
-        if features[i][1][50] == 0:
+        if features[i][1][49] == 0:
             # low at 0, check for recovery
             continue
         else:
@@ -93,4 +95,3 @@ for i in range(length):
         else:
             # no low bin
             labels.append("NI")
-print labels
